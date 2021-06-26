@@ -127,8 +127,8 @@ public class Controller implements Initializable {
     }
 
     public void bothIncome(boolean nett){
-        menIncome(nett,"",men);
-        womenIncome(nett,"",women);
+        menIncome(nett,"Mens Annual Income in €/Year",men);
+        womenIncome(nett,"Women's Annual Income in €/Year",women);
         lineChart.setTitle("Annual Income for Women and Men in Austria");
     }
 
