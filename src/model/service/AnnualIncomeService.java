@@ -19,4 +19,20 @@ public class AnnualIncomeService {
         return data;
     }
 
+    public ArrayList<Integer> getAllKeys(){
+        ArrayList<Integer> l = new ArrayList<Integer>();
+        for (Integer key : data.keySet() ) {
+            l.add(key);
+        }
+        return l;
+    }
+
+    public ArrayList<Integer> getAllValues(){
+        ArrayList<Integer> l = new ArrayList<Integer>();
+        for (Integer key : data.keySet() ) {
+            l.add(data.get(key).get(3));
+        }
+        return l;
+    }
+
 }

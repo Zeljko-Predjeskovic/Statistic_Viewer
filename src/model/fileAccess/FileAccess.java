@@ -43,12 +43,11 @@ public class FileAccess {
                 ArrayList<Integer> income = new ArrayList<>();
 
                 /**
-                 * going through the quartals and adding them into the
+                 * going through the quartals and adding them into income
                  */
                 for (int i = 1; i< str.length; i++){
                     income.add(Integer.parseInt(str[i]));
                 }
-
                 /**
                  * Setting key and value into HashMap
                  */

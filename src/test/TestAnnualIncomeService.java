@@ -10,14 +10,24 @@ import java.util.HashMap;
 
 public class TestAnnualIncomeService {
 
-    AnnualIncomeService annualIncomeService;
+    AnnualIncomeService annualIncomeService = new AnnualIncomeService("src/statisticFiles/men");
 
     @Test
     public void verifyAnnualIncomeDataGetter(){
-        annualIncomeService = new AnnualIncomeService("src/statisticFiles/men");
-
         Assertions.assertTrue(!annualIncomeService.getData().isEmpty());
         Assertions.assertTrue(annualIncomeService.getData().containsKey(1997));
         Assertions.assertTrue(annualIncomeService.getData().containsKey(2019));
+    }
+
+    @Test
+    public void verifyAnnualIncomeGetAllKeys(){
+        System.out.println(annualIncomeService.getAllKeys());
+        Assertions.assertTrue(!annualIncomeService.getAllKeys().isEmpty());
+    }
+
+    @Test
+    public void verifyAnnualIncomeGetAllValues(){
+        System.out.println(annualIncomeService.getAllValues());
+        Assertions.assertTrue(!annualIncomeService.getAllValues().isEmpty());
     }
 }
