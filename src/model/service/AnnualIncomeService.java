@@ -35,4 +35,13 @@ public class AnnualIncomeService {
         return l;
     }
 
+
+    public ArrayList<Integer> getAllValuesNett(){
+        ArrayList<Integer> l = new ArrayList<Integer>();
+        for (Integer key : data.keySet() ) {
+            l.add(data.get(key).get(7));
+        }
+        return l;
+    }
+
 }

@@ -3,14 +3,14 @@
 
 
 <?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ComboBox?>
 <GridPane fx:id="gridPane" fx:controller="viewModel.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <children>
-        <ComboBox fx:id="comboBox" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#comboBox"/>
-        <LineChart fx:id="lineChart" title="" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <ComboBox fx:id="comboBox" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                  onAction="#comboBox"/>
+        <LineChart fx:id="lineChart" title="" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <xAxis>
                 <NumberAxis fx:id="xAxis" side="BOTTOM" />
             </xAxis>

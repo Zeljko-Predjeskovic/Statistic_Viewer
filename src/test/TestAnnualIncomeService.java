@@ -4,10 +4,6 @@ import model.service.AnnualIncomeService;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class TestAnnualIncomeService {
 
     AnnualIncomeService annualIncomeService = new AnnualIncomeService("src/statisticFiles/men");
