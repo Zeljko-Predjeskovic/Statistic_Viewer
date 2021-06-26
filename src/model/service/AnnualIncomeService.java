@@ -6,11 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * @author Zeljko Predjeskovic
- *
- * @date 26.06.2021
- */
+
 public class AnnualIncomeService {
 
     HashMap<Integer, ArrayList<Integer>> data;

@@ -4,9 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Class for accessing the files with the given information
- */
+
 public class FileAccess {
     /**
      * @param f user file you want to read.
