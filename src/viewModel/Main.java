@@ -14,7 +14,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../view/index.fxml"));
         primaryStage.getIcons().add(new Image("icon.png"));
         primaryStage.setTitle("Statistics");
-        primaryStage.setScene(new Scene(root, 760, 520));
+        primaryStage.setScene(new Scene(root, 1020, 500));
         primaryStage.setResizable(false);
         primaryStage.show();
     }

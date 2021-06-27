@@ -2,9 +2,7 @@ package viewModel;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
 import model.service.AnnualIncomeService;
@@ -26,10 +24,19 @@ public class Controller implements Initializable {
     LineChart<Number,Number> lineChart;
 
     @FXML
+    BarChart<String,Number> barChart;
+
+    @FXML
     NumberAxis xAxis;
 
     @FXML
     NumberAxis yAxis;
+
+    @FXML
+    CategoryAxis barXAxis;
+
+    @FXML
+    NumberAxis barYAxis;
 
     @FXML
     ComboBox comboBox;
@@ -43,7 +50,8 @@ public class Controller implements Initializable {
                 "Men's Yearly Income Nett",
                 "Women's Yearly Income Nett",
                 "Both Yearly Income Nett",
-                "Arithmetic mean Nett");
+                "Arithmetic mean Nett",
+                "Bar chart annual income");
 
         xAxis.setAutoRanging(false);
         xAxis.setLowerBound(1995);
@@ -53,6 +61,14 @@ public class Controller implements Initializable {
         yAxis.setLowerBound(10000);
         yAxis.setUpperBound(45000);
         yAxis.setTickUnit(5000);
+
+        barYAxis.setAutoRanging(false);
+        barYAxis.setLowerBound(15000);
+        barYAxis.setUpperBound(45000);
+        barYAxis.setTickUnit(5000);
+
+        barXAxis.setAnimated(false);
+
     }
 
     public void comboBox(){
@@ -89,10 +105,15 @@ public class Controller implements Initializable {
                 lineChart.getData().clear();
                 meanIncome(true,"Annual Income in €/Year Nett",both);
                 break;
+            case "Bar chart annual income" :
+                barChart.getData().clear();
+                barChartIncome();
+                break;
             default:
                 System.out.println("No item clicked");
         }
     }
+
 
 
     public XYChart.Series bindIncome(boolean nett, String title, AnnualIncomeService data){
@@ -134,5 +155,35 @@ public class Controller implements Initializable {
         lineChart.setTitle("Arithmetic mean Income for Men and Women in Austria");
 
         lineChart.getData().add(bindIncome(nett,title,data));
+    }
+
+    private void barChartIncome() {
+
+        barChart.setTitle("Annual Income in €");
+        xAxis.setLabel("Year");
+        yAxis.setLabel("Income in €");
+
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("men");
+        series1.getData().add(new XYChart.Data("2000", men.getData().get(2000).get(3)));
+        series1.getData().add(new XYChart.Data("2010", men.getData().get(2010).get(3)));
+        series1.getData().add(new XYChart.Data("2019", men.getData().get(2019).get(3)));
+
+
+        XYChart.Series series2 = new XYChart.Series();
+        series2.setName("women");
+        series2.getData().add(new XYChart.Data("2000", women.getData().get(2000).get(3)));
+        series2.getData().add(new XYChart.Data("2010", women.getData().get(2010).get(3)));
+        series2.getData().add(new XYChart.Data("2019", women.getData().get(2019).get(3)));
+
+
+        XYChart.Series series3 = new XYChart.Series();
+        series3.setName("both");
+        series3.getData().add(new XYChart.Data("2000", both.getData().get(2000).get(3)));
+        series3.getData().add(new XYChart.Data("2010", both.getData().get(2010).get(3)));
+        series3.getData().add(new XYChart.Data("2019", both.getData().get(2019).get(3)));
+
+
+        barChart.getData().addAll(series1, series2, series3);
     }
 }
