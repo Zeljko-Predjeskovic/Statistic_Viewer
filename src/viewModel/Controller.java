@@ -1,5 +1,7 @@
 package viewModel;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
@@ -56,7 +58,7 @@ public class Controller implements Initializable {
         xAxis.setAutoRanging(false);
         xAxis.setLowerBound(1995);
         xAxis.setUpperBound(2021);
-        xAxis.setTickUnit(1);
+        xAxis.setTickUnit(3);
         yAxis.setAutoRanging(false);
         yAxis.setLowerBound(10000);
         yAxis.setUpperBound(45000);
@@ -151,37 +153,36 @@ public class Controller implements Initializable {
         lineChart.setTitle("Annual Income for Women and Men in Austria");
     }
 
-    private void meanIncome(boolean nett,String title, AnnualIncomeService data) {
+    public void meanIncome(boolean nett,String title, AnnualIncomeService data) {
         lineChart.setTitle("Arithmetic mean Income for Men and Women in Austria");
 
         lineChart.getData().add(bindIncome(nett,title,data));
     }
 
-    private void barChartIncome() {
+    private XYChart.Series createSeries(AnnualIncomeService data, String name, ObservableList<Integer> ol){
+        XYChart.Series series = new XYChart.Series();
+        series.setName(name);
+        for (int d:ol) {
+            series.getData().add(new XYChart.Data(""+d, data.getData().get(d).get(3)));
+        }
+        return series;
+    }
+
+    public void barChartIncome() {
 
         barChart.setTitle("Annual Income in €");
         xAxis.setLabel("Year");
         yAxis.setLabel("Income in €");
 
-        XYChart.Series series1 = new XYChart.Series();
-        series1.setName("men");
-        series1.getData().add(new XYChart.Data("2000", men.getData().get(2000).get(3)));
-        series1.getData().add(new XYChart.Data("2010", men.getData().get(2010).get(3)));
-        series1.getData().add(new XYChart.Data("2019", men.getData().get(2019).get(3)));
+        ObservableList<Integer> ol = FXCollections.observableArrayList(2000,2010,2019);
+
+        XYChart.Series series1 = createSeries(men,"men",ol);
 
 
-        XYChart.Series series2 = new XYChart.Series();
-        series2.setName("women");
-        series2.getData().add(new XYChart.Data("2000", women.getData().get(2000).get(3)));
-        series2.getData().add(new XYChart.Data("2010", women.getData().get(2010).get(3)));
-        series2.getData().add(new XYChart.Data("2019", women.getData().get(2019).get(3)));
+        XYChart.Series series2 = createSeries(women,"women",ol);
 
 
-        XYChart.Series series3 = new XYChart.Series();
-        series3.setName("both");
-        series3.getData().add(new XYChart.Data("2000", both.getData().get(2000).get(3)));
-        series3.getData().add(new XYChart.Data("2010", both.getData().get(2010).get(3)));
-        series3.getData().add(new XYChart.Data("2019", both.getData().get(2019).get(3)));
+        XYChart.Series series3 = createSeries(both,"both",ol);
 
 
         barChart.getData().addAll(series1, series2, series3);
