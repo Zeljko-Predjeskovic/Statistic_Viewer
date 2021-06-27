@@ -12,7 +12,7 @@ Javafx: javafx-sdk-11.0.2
 
 1. open project in IDE 
 
-2. got to File -> project structures -> libraries and add the /lib folde path from your javafx jdk
+2. got to File -> project structures -> libraries and add the /lib folder path from your javafx sdk
 
 ![setup libraries](images/setup1.PNG)
 
